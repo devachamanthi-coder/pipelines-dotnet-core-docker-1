@@ -11,7 +11,8 @@ RUN dotnet build -c Release
 RUN dotnet publish -c Release -o out
 
 # Second stage - Build runtime image
-FROM microsoft/aspnetcore
+#FROM microsoft/aspnetcore
+FROM mcr.microsoft.com/dotnet/aspnet:2.1
 WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "pipelines-dotnet-core-docker.dll"]
